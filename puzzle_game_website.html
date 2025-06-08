@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Match Puzzle - Free Online Puzzle Game</title>
+    <meta name="description" content="Play Color Match Puzzle, a challenging brain-training game where you match colors and patterns. Free to play on mobile and desktop.">
+    <link rel="canonical" href="https://example.com/color-match-puzzle">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1d1d1f;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #6d6d6d;
+            margin-bottom: 20px;
+        }
+
+        .game-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #1d1d1f;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .game-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            width: 100%;
+            aspect-ratio: 1;
+            padding: 20px;
+            background: #f5f5f7;
+            border-radius: 15px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-tile {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-tile:hover {
+            transform: scale(1.05);
+            border-color: #007aff;
+        }
+
+        .game-tile.matched {
+            transform: scale(0.95);
+            opacity: 0.7;
+            cursor: default;
+        }
+
+        .game-controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #007aff, #5856d6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            background: #f5f5f7;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007aff;
+        }
+
+        .score-label {
+            color: #6d6d6d;
+            font-size: 0.9rem;
+        }
+
+        .game-description {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            background: #f5f5f7;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header, .game-section, .game-description {
+                padding: 20px;
+            }
+            
+            .game-board {
+                padding: 15px;
+            }
+            
+            .score-board {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Color Match Puzzle</h1>
+            <p class="tagline">Challenge your memory with this addictive color matching game</p>
+        </header>
+
+        <div class="game-section">
+            <h2>🎮 Play Now</h2>
+            <div class="score-board">
+                <div class="score-item">
+                    <div class="score-value" id="score">0</div>
+                    <div class="score-label">Score</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-value" id="moves">0</div>
+                    <div class="score-label">Moves</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-value" id="level">1</div>
+                    <div class="score-label">Level</div>
+                </div>
+            </div>
+            
+            <div class="game-container">
+                <div class="game-board" id="gameBoard"></div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="btn" onclick="startNewGame()">New Game</button>
+                <button class="btn" onclick="resetGame()">Reset</button>
+            </div>
+        </div>
+
+        <div class="game-description">
+            <h2>🧠 About Color Match Puzzle</h2>
+            <p>Color Match Puzzle is an engaging brain-training game that challenges your memory and pattern recognition skills. Click on tiles to reveal colors, then find matching pairs to clear the board. With each level, the challenge increases as more colors and patterns are introduced.</p>
+            
+            <h2>🎯 How to Play</h2>
+            <p>The objective is simple yet challenging: click on tiles to reveal their colors, then find and match pairs of identical colors. Each successful match earns you points and brings you closer to completing the level. Be strategic with your moves - the fewer moves you use, the higher your score!</p>
+            
+            <h2>✨ Game Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Vibrant Colors</h3>
+                    <p>Beautiful, eye-catching color palette that's easy on the eyes</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Optimized for both desktop and mobile devices</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Progressive Levels</h3>
+                    <p>Increasing difficulty with more colors and complex patterns</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Play</h3>
+                    <p>No downloads required - play directly in your browser</p>
+                </div>
+            </div>
+            
+            <h2>🎮 Game Mechanics</h2>
+            <p>The game starts with a 4x4 grid of hidden tiles, each concealing a color. Your task is to uncover matching pairs by clicking on tiles. When you find a match, those tiles remain visible and you earn points. The game tracks your score, number of moves, and current level. As you advance through levels, new colors are introduced, making the game progressively more challenging and rewarding.</p>
+        </div>
+    </div>
+
+    <script>
+        let gameBoard = [];
+        let flippedTiles = [];
+        let score = 0;
+        let moves = 0;
+        let level = 1;
+        let matchedPairs = 0;
+        
+        const colors = [
+            '#FF3B30', '#FF9500', '#FFCC00', '#34C759',
+            '#007AFF', '#5856D6', '#AF52DE', '#FF2D92',
+            '#A2845E', '#8E8E93', '#FF6B35', '#32D74B'
+        ];
+
+        function initGame() {
+            const boardSize = 16;
+            const pairsNeeded = 8;
+            const availableColors = colors.slice(0, Math.min(4 + level, colors.length));
+            
+            // Create pairs
+            gameBoard = [];
+            for (let i = 0; i < pairsNeeded; i++) {
+                const color = availableColors[i % availableColors.length];
+                gameBoard.push(color, color);
+            }
+            
+            // Shuffle the board
+            for (let i = gameBoard.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [gameBoard[i], gameBoard[j]] = [gameBoard[j], gameBoard[i]];
+            }
+            
+            renderBoard();
+            updateScore();
+        }
+
+        function renderBoard() {
+            const board = document.getElementById('gameBoard');
+            board.innerHTML = '';
+            
+            gameBoard.forEach((color, index) => {
+                const tile = document.createElement('div');
+                tile.className = 'game-tile';
+                tile.style.backgroundColor = '#D1D1D6';
+                tile.dataset.index = index;
+                tile.addEventListener('click', () => flipTile(index));
+                board.appendChild(tile);
+            });
+        }
+
+        function flipTile(index) {
+            const tile = document.querySelector(`[data-index="${index}"]`);
+            
+            if (flippedTiles.length === 2 || 
+                flippedTiles.includes(index) || 
+                tile.classList.contains('matched')) {
+                return;
+            }
+            
+            // Reveal the tile
+            tile.style.backgroundColor = gameBoard[index];
+            tile.textContent = '✨';
+            flippedTiles.push(index);
+            
+            if (flippedTiles.length === 2) {
+                moves++;
+                updateScore();
+                
+                setTimeout(() => {
+                    checkMatch();
+                }, 800);
+            }
+        }
+
+        function checkMatch() {
+            const [first, second] = flippedTiles;
+            const firstTile = document.querySelector(`[data-index="${first}"]`);
+            const secondTile = document.querySelector(`[data-index="${second}"]`);
+            
+            if (gameBoard[first] === gameBoard[second]) {
+                // Match found
+                firstTile.classList.add('matched');
+                secondTile.classList.add('matched');
+                score += 100;
+                matchedPairs++;
+                
+                // Check if level is complete
+                if (matchedPairs === 8) {
+                    setTimeout(() => {
+                        alert(`Level ${level} Complete! Moving to Level ${level + 1}`);
+                        level++;
+                        matchedPairs = 0;
+                        initGame();
+                    }, 500);
+                }
+            } else {
+                // No match - hide tiles again
+                firstTile.style.backgroundColor = '#D1D1D6';
+                firstTile.textContent = '';
+                secondTile.style.backgroundColor = '#D1D1D6';
+                secondTile.textContent = '';
+            }
+            
+            flippedTiles = [];
+            updateScore();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('moves').textContent = moves;
+            document.getElementById('level').textContent = level;
+        }
+
+        function startNewGame() {
+            score = 0;
+            moves = 0;
+            level = 1;
+            matchedPairs = 0;
+            flippedTiles = [];
+            initGame();
+        }
+
+        function resetGame() {
+            moves = 0;
+            matchedPairs = 0;
+            flippedTiles = [];
+            initGame();
+        }
+
+        // Initialize the game when page loads
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
