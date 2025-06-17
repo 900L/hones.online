@@ -1,60 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Color Match Puzzle - Free Online Puzzle Game</title>
-  <meta name="description" content="Play Color Match Puzzle, a challenging brain-training game where you match colors and patterns. Free to play on mobile and desktop.">
-  <link rel="canonical" href="https://hones.online/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Match Puzzle - Free Online Puzzle Game</title>
+    <meta name="description" content="Play Color Match Puzzle, a challenging brain-training game where you match colors and patterns. Free to play on mobile and desktop.">
+    <link rel="canonical" href="https://example.com/color-match-puzzle">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- ✅ Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CWXTSHTYZF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-CWXTSHTYZF');
-  </script>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1d1d1f;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-  <!-- ✅ Google AdSense -->
-  <meta name="google-adsense-account" content="ca-pub-5879956335652571">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5879956335652571"
-     crossorigin="anonymous"></script>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #1d1d1f;
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    p {
-      margin-bottom: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007aff;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  </style>
-</head>
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
 
-<body>
-  <h1>Color Match Puzzle</h1>
-  <p>Challenge your memory with this addictive color matching game</p>
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
 
-  <button onclick="alert('Game not loaded yet')">Play Now</button>
+        .tagline {
+            font-size: 1.2rem;
+            color: #6d6d6d;
+            margin-bottom: 20px;
+        }
+
+        .game-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #1d1d1f;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .game-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            width: 100%;
+            aspect-ratio: 1;
+            padding: 20px;
+            background: #f5f5f7;
+            border-radius: 15px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-tile {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-tile:hover {
+            transform: scale(1.05);
+            border-color: #007aff;
+        }
+
+        .game-tile.matched {
+            transform: scale(0.95);
+            opacity: 0.7;
+            cursor: default;
+        }
+
+        .game-controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #007aff, #5856d6);
+            color: white;
+            border: none;
+            tile.style.backgroundColor = gameBoard[index];
+            tile.textContent = '✨';
+            flippedTiles.push(index);
+            
+            if (flippedTiles.length === 2) {
+                moves++;
+                updateScore();
+                
+                setTimeout(() => {
+                    checkMatch();
+                }, 800);
+            }
+        }
+
+        function checkMatch() {
+            const [first, second] = flippedTiles;
+            const firstTile = document.querySelector(`[data-index="${first}"]`);
+            const secondTile = document.querySelector(`[data-index="${second}"]`);
+            
+            if (gameBoard[first] === gameBoard[second]) {
+                // Match found
+                firstTile.classList.add('matched');
+                secondTile.classList.add('matched');
+                score += 100;
+                matchedPairs++;
+                
+                // Check if level is complete
+                if (matchedPairs === 8) {
+                    setTimeout(() => {
+                        alert(`Level ${level} Complete! Moving to Level ${level + 1}`);
+                        level++;
+                        matchedPairs = 0;
+                        initGame();
+                    }, 500);
+                }
+            } else {
+                // No match - hide tiles again
+                firstTile.style.backgroundColor = '#D1D1D6';
+                firstTile.textContent = '';
+                secondTile.style.backgroundColor = '#D1D1D6';
+                secondTile.textContent = '';
+            }
+            
+            flippedTiles = [];
+            updateScore();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('moves').textContent = moves;
+            document.getElementById('level').textContent = level;
+        }
+
+        function startNewGame() {
+            score = 0;
+            moves = 0;
+            level = 1;
+            matchedPairs = 0;
+            flippedTiles = [];
+            initGame();
+        }
+
+        function resetGame() {
+            moves = 0;
+            matchedPairs = 0;
+            flippedTiles = [];
+            initGame();
+        }
+
+        // Initialize the game when page loads
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
 </body>
 </html>
