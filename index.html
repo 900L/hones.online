@@ -7,7 +7,7 @@
   <meta name="description" content="Play Color Match Puzzle, a challenging brain-training game where you match colors and patterns. Free to play on mobile and desktop.">
   <link rel="canonical" href="https://hones.online/">
 
-  <!-- ✅ Google Analytics 跟踪代码 -->
+  <!-- ✅ Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CWXTSHTYZF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,20 +16,17 @@
     gtag('config', 'G-CWXTSHTYZF');
   </script>
 
-  <!-- ✅ Google AdSense 广告代码 -->
+  <!-- ✅ Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-5879956335652571">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5879956335652571"
      crossorigin="anonymous"></script>
 
-  <!-- ✅ CSS 样式写这里 -->
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #1d1d1f;
       line-height: 1.6;
@@ -37,8 +34,19 @@
       padding: 20px;
     }
     h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007aff;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -47,12 +55,6 @@
   <h1>Color Match Puzzle</h1>
   <p>Challenge your memory with this addictive color matching game</p>
 
-  <!-- ✅ 你可以在这里继续放游戏内容或 JS 逻辑 -->
-  <script>
-    // 示例：游戏初始化
-    document.addEventListener("DOMContentLoaded", function() {
-      console.log("游戏初始化...");
-    });
-  </script>
+  <button onclick="alert('Game not loaded yet')">Play Now</button>
 </body>
 </html>
